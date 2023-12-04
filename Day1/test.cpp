@@ -3,7 +3,7 @@
 #include <map>
 
 int main() {
-    std::string inputString = "aonedfs";
+    std::string inputString = "aninefivetwoonedfs";
     int foundNumber = -1;
 
     std::map<std::string, int> numberMap;

@@ -40,11 +40,11 @@ int main (){
         for (std::map<int, std::string>::iterator it = myMap.begin(); it != myMap.end(); ++it)
         {
             j = input.find(it->second);
-            // std::cout << "jjjjjj: " << j << std::endl;
-            // std::cout << it->second << std::endl;
+            std::cout << "jjjjjj: " << j << std::endl;
+            std::cout << it->second << std::endl;
             if (j != std::string::npos)
             {
-                c = it->first + 1;
+                c = it->first;
                 // std::cout << " ccccc : " << c << std::endl;
                 break;
             }
@@ -63,18 +63,19 @@ int main (){
             }
         } 
         std::map<int, std::string>::reverse_iterator it; 
-        for (it = myMap.rbegin(); it != myMap.rend(); ++it) {
-        j = input.rfind(it->second);
-        if (j != std::string::npos)
+        for (it = myMap.rbegin(); it != myMap.rend(); ++it)
         {
-            d = it->first;
-            break;
-        }
+            j = input.rfind(it->second);
+            if (j != std::string::npos)
+            {
+                d = it->first;
+                break;
+            }
         // std::cout << "end: i: " << i << " j: " << j << std::endl;
-        std::cout << "end: i: " << i << " j: " << j  << " b: " << b << " d: " << d << std::endl;
+        }   
+        // std::cout << "end: i: " << i << " j: " << j  << " b: " << b << " d: " << d << std::endl;
         if (i < j && j != std::string::npos)
             b = d;
-    }   
         sum = 10*a + b;
         a = 0;
         b = 0;
