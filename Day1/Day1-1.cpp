@@ -34,5 +34,6 @@ int main (){
         std::cout << "sum " << sum << std::endl; 
         result += sum;
     }
+    ifs.close();
     std::cout << result << std::endl;
 }
