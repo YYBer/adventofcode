@@ -20,35 +20,38 @@ int getNumber(std::string cubes, std::string color, int pos)
     }
 }
 
-bool validGame(std::string input)
+int fewestNumberCube(std::string input)
 {
     size_t pos = input.find(':');
     std::string cubes;
     if (pos != std::string::npos)
         cubes = input.substr(pos + 2);
-    int num = -1;
+    int numr = 1;
+    int numg = 1;
+    int numb = 1;
+    int num;
     for(int i = 0; i < cubes.size(); ++i)
     {
         if (cubes[i] == 'r' && cubes[i - 1] == ' ')
         {
             num = getNumber(cubes, "red", i - 1);
-            if (num > 12)
-                return false;
+            if (num > numr)
+                numr = num;
         }
         else if (cubes[i] == 'g')
         {
             num = getNumber(cubes, "green", i - 1);
-            if (num > 13)
-                return false;
+            if (num > numg)
+                numg = num;
         }
         else if (cubes[i] == 'b')
         {
             num = getNumber(cubes, "blue", i - 1);
-            if (num > 14)
-                return false;
+            if (num > numb)
+                numb = num;
         }
     }
-    return true;    
+    return numr*numg*numb;    
 }
 
 int main()
@@ -59,12 +62,8 @@ int main()
     int gameID = 0;
     while(std::getline(ifs, input))
     {
-        gameID += 1;
-        if (validGame(input))
-        {
-            std::cout << "line " << gameID << " OK!\n";
-            sum += gameID;
-        }
+        gameID++;
+        sum += fewestNumberCube(input);
     }
     std::cout << "sum: "<< sum << std::endl;
     ifs.close();
