@@ -32,14 +32,23 @@ bool loopCheck(int num, std::vector<int> list2)
     for (std::vector<int>::iterator it = list2.begin(); it != list2.end(); ++it)
     {
         if ((*it) == num)
-        {
-            std::cout << *it  << "i found it  num: " << num << std::endl;
             return true;
-        }
     }
     return false;
 }
 
+int sumconsult(int sum)
+{
+    int result = 1;
+    if (sum <= 2)
+        return sum;
+    else{
+        for(int i = 1; i < sum; ++i)
+            result *= 2;
+    }
+    return result;
+    
+}
 int lineCheck(std::vector<int> list1, std::vector<int> list2)
 {
     int sum = 0;
@@ -48,8 +57,8 @@ int lineCheck(std::vector<int> list1, std::vector<int> list2)
         if (loopCheck((*it), list2))
             sum++;
     }
-    // std::cout << "sum " << sum << std::endl;
-    return sum;
+    int result = sumconsult(sum);
+    return result;
 }
 
 int main()
@@ -57,24 +66,19 @@ int main()
     std::string input = "";
     std::string lastline= "";
     std::ifstream ifs ("input.txt");
-    // std::ifstream ifs ("test.txt");
     int sum = 0;
-    int line =0;
     while(std::getline(ifs, input))
     {
-        std::string line = input.substr(10);
+        std::string line = input.substr(9);
         size_t pos = line.find('|');
         std::string sub1 = line.substr(0, pos - 1);
         std::string sub2 = line.substr(pos + 2);
         std::vector<int> list1 = createList(sub1);
         std::vector<int> list2 = createList(sub2);
-        std::cout << "line " << line << std::endl;
-        line += 1;
         sum += lineCheck(list1, list2);
         list1.clear();
         list2.clear();
-        // std::cout << "sub1:" << sub1 << ".sub2:" << sub2 << "."<< std::endl; 
     }
-    std::cout << "\n" << "sum: "<< sum << std::endl;
+    std::cout << "sum: "<< sum << std::endl;
     ifs.close();
 }
